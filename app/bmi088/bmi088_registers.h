@@ -57,11 +57,16 @@ typedef struct {
     uint8_t int1_en : 1;
     uint8_t int2_en : 1;
     uint8_t : 2;
-} PACKED bmi088_acc_fifo_config_t;
+} PACKED bmi088_acc_fifo_config_1_t;
 
 typedef struct {
-    uint8_t : 3;
-    uint16_t fifo_water_mark : 13;
+    uint8_t : 7;
+    uint8_t mode : 1;
+} PACKED bmi088_acc_fifo_config_0_t;
+
+typedef struct {
+    uint8_t : 2;
+    uint16_t fifo_water_mark : 14;
 } PACKED bmi088_acc_fifo_wtm_t;
 
 typedef struct {
@@ -86,14 +91,21 @@ typedef struct {
 
 typedef struct {
     uint8_t : 2;
-    uint16_t length : 14;
-} PACKED bmi088_acc_fifo_length_t;
+    uint8_t fifo_byte_counter_13to8 : 6;
+} PACKED bmi088_acc_fifo_length_1_t;
 
 typedef struct {
-    uint8_t temp_lsb : 3;
+    uint8_t fifo_byte_counter_7to0 : 8;
+} PACKED bmi088_acc_fifo_length_0_t;
+
+typedef struct {
+    uint8_t temperature_2to0 : 3;
     uint8_t : 5;
-    uint8_t temp_msb : 8;
-} PACKED bmi088_acc_temp_t;
+} PACKED bmi088_acc_temp_lsb_t;
+
+typedef struct {
+    uint8_t temperature_10to3 : 8;
+} PACKED bmi088_acc_temp_msb_t;
 
 typedef struct {
     uint8_t acc_drdy : 1;
@@ -101,26 +113,43 @@ typedef struct {
 } PACKED bmi088_acc_int_stat_t;
 
 typedef struct {
-    uint32_t sensor_time : 24;
-} PACKED bmi088_acc_sensortime_t;
+    uint8_t sensor_time_23to16 : 8;
+} PACKED bmi088_acc_sensortime_2_t;
 
 typedef struct {
-    uint8_t acc_z_lsb : 8;
-    uint8_t acc_z_msb : 8;
-} PACKED bmi088_acc_z_t;
+    uint8_t sensor_time_15to8 : 8;
+} PACKED bmi088_acc_sensortime_1_t;
 
 typedef struct {
-    uint8_t acc_y_lsb : 8;
-    uint8_t acc_y_msb : 8;
-} PACKED bmi088_acc_y_t;
+    uint8_t sensor_time_7to0 : 8;
+} PACKED bmi088_acc_sensortime_0_t;
 
 typedef struct {
-    uint8_t acc_x_lsb : 8;
-    uint8_t acc_x_msb : 8;
-} PACKED bmi088_acc_x_t;
+    uint8_t acc_z_15to8 : 8;
+} PACKED bmi088_acc_z_msb_t;
 
 typedef struct {
-    uint8_t acc_drdy : 1;
+    uint8_t acc_z_7to0 : 8;
+} PACKED bmi088_acc_z_lsb_t;
+
+typedef struct {
+    uint8_t acc_y_15to8 : 8;
+} PACKED bmi088_acc_y_msb_t;
+
+typedef struct {
+    uint8_t acc_y_7to0 : 8;
+} PACKED bmi088_acc_y_lsb_t;
+
+typedef struct {
+    uint8_t acc_x_15to8 : 8;
+} PACKED bmi088_acc_x_msb_t;
+
+typedef struct {
+    uint8_t acc_x_7to0 : 8;
+} PACKED bmi088_acc_x_lsb_t;
+
+typedef struct {
+    uint8_t drdy_acc : 1;
     uint8_t : 7;
 } PACKED bmi088_acc_status_t;
 
@@ -142,8 +171,11 @@ typedef struct {
 typedef struct {
     uint8_t fifo_mode : 1;
     uint8_t : 7;
+} PACKED bmi088_gyro_fifo_config_1_t;
+
+typedef struct {
     uint8_t fifo_wm_lvl_trig_retain : 8;
-} PACKED bmi088_gyro_fifo_config_t;
+} PACKED bmi088_gyro_fifo_config_0_t;
 
 typedef struct {
     uint8_t : 3;
@@ -218,19 +250,28 @@ typedef struct {
 } PACKED bmi088_gyro_int_stat_t;
 
 typedef struct {
-    uint8_t rate_z_lsb : 8;
-    uint8_t rate_z_msb : 8;
-} PACKED bmi088_gyro_rate_z_t;
+    uint8_t rate_z_15to8 : 8;
+} PACKED bmi088_gyro_rate_z_msb_t;
 
 typedef struct {
-    uint8_t rate_y_lsb : 8;
-    uint8_t rate_y_msb : 8;
-} PACKED bmi088_gyro_rate_y_t;
+    uint8_t rate_z_7to0 : 8;
+} PACKED bmi088_gyro_rate_z_lsb_t;
 
 typedef struct {
-    uint8_t rate_x_lsb : 8;
-    uint8_t rate_x_msb : 8;
-} PACKED bmi088_gyro_rate_x_t;
+    uint8_t rate_y_15to8 : 8;
+} PACKED bmi088_gyro_rate_y_msb_t;
+
+typedef struct {
+    uint8_t rate_y_7to0 : 8;
+} PACKED bmi088_gyro_rate_y_lsb_t;
+
+typedef struct {
+    uint8_t rate_x_15to8 : 8;
+} PACKED bmi088_gyro_rate_x_msb_t;
+
+typedef struct {
+    uint8_t rate_x_7to0 : 8;
+} PACKED bmi088_gyro_rate_x_lsb_t;
 
 typedef struct {
     uint8_t gyro_chip_id : 8;

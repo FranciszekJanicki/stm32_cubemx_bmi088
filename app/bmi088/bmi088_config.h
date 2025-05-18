@@ -29,6 +29,7 @@ typedef enum {
 typedef enum {
     BMI088_ACC_REG_ADDR_ACC_SOFTRESET = 0x7E,
     BMI088_ACC_REG_ADDR_ACC_PWR_CTRL = 0x7D,
+    BMI088_ACC_REG_ADDR_ACC_PWR_CONF = 0x7C,
     BMI088_ACC_REG_ADDR_ACC_SELF_TEST = 0x6D,
     BMI088_ACC_REG_ADDR_INT_MAP_DATA = 0x58,
     BMI088_ACC_REG_ADDR_INT2_IO_CTRL = 0x54,
@@ -133,11 +134,11 @@ typedef bmi088_err_t (*bmi088_deinit_t)(void*);
 typedef bmi088_err_t (*bmi088_delay_t)(uint32_t);
 
 typedef struct {
-    void* accel_user;
-    bmi088_init_t accel_init;
-    bmi088_deinit_t accel_deinit;
-    bmi088_write_t accel_write;
-    bmi088_read_t accel_read;
+    void* acc_user;
+    bmi088_init_t acc_init;
+    bmi088_deinit_t acc_deinit;
+    bmi088_write_t acc_write;
+    bmi088_read_t acc_read;
 
     void* gyro_user;
     bmi088_init_t gyro_init;
