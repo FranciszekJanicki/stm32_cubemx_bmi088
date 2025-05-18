@@ -19,26 +19,26 @@ typedef struct {
 
 typedef struct {
     uint8_t acc_self_test : 8;
-} PACKED bmi088_acc_selt_test_t;
+} PACKED bmi088_acc_self_test_t;
 
 typedef struct {
-    uint8_t reserved7 : 1;
+    uint8_t : 1;
     uint8_t int2_drdy : 1;
     uint8_t int2_fwm : 1;
     uint8_t int2_ffull : 1;
-    uint8_t reserved3 : 1;
+    uint8_t : 1;
     uint8_t int1_drdy : 1;
     uint8_t int1_fwm : 1;
     uint8_t int1_ffull : 1;
 } PACKED bmi088_acc_int_map_data_t;
 
 typedef struct {
-    uint8_t reserved765 : 3;
+    uint8_t : 3;
     uint8_t int2_in : 1;
     uint8_t int2_out : 1;
     uint8_t int2_od : 1;
     uint8_t int2_lvl : 1;
-    uint8_t reserved0 : 1;
+    uint8_t : 1;
 } PACKED bmi088_acc_int2_io_ctrl_t;
 
 typedef struct {
@@ -53,8 +53,7 @@ typedef struct {
 typedef struct {
     uint8_t : 1;
     uint8_t acc_en : 1;
-    uint8_t : 1;
-    uint8_t : 1;
+    uint8_t : 2;
     uint8_t int1_en : 1;
     uint8_t int2_en : 1;
     uint8_t : 2;
@@ -185,7 +184,7 @@ typedef struct {
 } PACKED bmi088_gyro_int3_int4_io_conf_t;
 
 typedef struct {
-    uint8_t date_en : 1;
+    uint8_t data_en : 1;
     uint8_t fifo_en : 1;
     uint8_t : 6;
 } PACKED bmi088_gyro_int_ctrl_t;

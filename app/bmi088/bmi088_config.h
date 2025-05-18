@@ -1,12 +1,30 @@
 #ifndef BMI088_BMI088_CONFIG_H
 #define BMI088_BMI088_CONFIG_H
 
+#include <stddef.h>
 #include <stdint.h>
 
 #define BMI088_TEMP_SCALE 0.125F
 #define BMI088_ACC_PERIOD_INC_US 39.0625F
 
 typedef float float32_t;
+
+typedef struct {
+    int16_t x;
+    int16_t y;
+    int16_t z;
+} bmi088_data_raw_t;
+
+typedef struct {
+    float32_t x;
+    float32_t y;
+    float32_t z;
+} bmi088_data_scaled_t;
+
+typedef enum {
+    BMI088_ERR_OK = 0,
+    BMI088_ERR_FAIL = -1,
+} bmi088_err_t;
 
 typedef enum {
     BMI088_ACC_REG_ADDR_ACC_SOFTRESET = 0x7E,
@@ -104,16 +122,30 @@ typedef enum {
 } bmi088_gyro_slave_addr_t;
 
 typedef struct {
+    float32_t acc_scale;
+    float32_t gyro_scale;
 } bmi088_config_t;
+
+typedef bmi088_err_t (*bmi088_write_t)(void*, uint8_t, uint8_t const*, size_t);
+typedef bmi088_err_t (*bmi088_read_t)(void*, uint8_t, uint8_t*, size_t);
+typedef bmi088_err_t (*bmi088_init_t)(void*);
+typedef bmi088_err_t (*bmi088_deinit_t)(void*);
+typedef bmi088_err_t (*bmi088_delay_t)(uint32_t);
 
 typedef struct {
     void* accel_user;
+    bmi088_init_t accel_init;
+    bmi088_deinit_t accel_deinit;
+    bmi088_write_t accel_write;
+    bmi088_read_t accel_read;
+
     void* gyro_user;
-    void (*init)(void* const);
-    void (*deinit)(void* const);
-    void (*write)(void* const, uint8_t const, uint8_t const* const, size_t const);
-    void (*read)(void* const, uint8_t const, uint8_t* const, size_t const);
-    void (*delay)(void* const, uint32_t const);
+    bmi088_init_t gyro_init;
+    bmi088_deinit_t gyro_deinit;
+    bmi088_write_t gyro_write;
+    bmi088_read_t gyro_read;
+
+    bmi088_delay_t delay;
 } bmi088_interface_t;
 
 #endif // BMI088_BMI088_CONFIG_H
