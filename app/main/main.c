@@ -1,4 +1,5 @@
 #include "main.h"
+#include "bmi088.h"
 
 int main()
 {

@@ -1,8 +1,8 @@
 add_library(bmi088 STATIC)
 
 target_sources(bmi088 PRIVATE 
-    "bmi088.cpp"    
-    "bmi088_utility.cpp"
+    "bmi088.c"    
+    "bmi088_utility.c"
 )
 
 target_include_directories(bmi088 PRIVATE 
@@ -14,7 +14,7 @@ target_link_libraries(bmi088 PRIVATE
 )
 
 target_compile_options(bmi088 PUBLIC
-    -std=c++23
+    -std=c23
     -Wall
     -Wextra
     -Wconversion
