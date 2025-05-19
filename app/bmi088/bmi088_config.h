@@ -24,6 +24,7 @@ typedef struct {
 typedef enum {
     BMI088_ERR_OK = 0,
     BMI088_ERR_FAIL = -1,
+    BMI0088_ERR_NULL = -2,
 } bmi088_err_t;
 
 typedef enum {
